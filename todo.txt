@@ -1,0 +1,9 @@
+1. Skuteczność każdej z reguł uczenia i jej wpływ na liczbę stabilnych wzorców uczących
+2. Na początku projektu zostanie udostępniony zbiór wzorców. Których spośród dostarczonych zbiorów sieć uczy się poprawnie, a których nie? W których przypadkach wzorce uczące nie są stanami stabilnymi i dlaczego? [Uzasadnienie w raporcie odnieść do istniejących prac na temat sieci Hopfielda]
+3. Pośród zbiorów są dwa, które zawierają prawie identyczne wzory (jeden w wersji 25×25 i drugi w wersji 25×50). Dlaczego skuteczność odzyskiwania różni się znacząco na tych zbiorach?
+4. Jaka jest skuteczność odzyskiwania oryginałów z uszkodzonego wejścia w zależności od liczności i rodzaju zbioru?
+5. Porównać skuteczność na zbiorze, w którym są grupy elementów dość podobnych i takim, który jest całkiem zróżnicowany, gdy zbiory są o podobnej liczności?
+6. Jak nauczona sieć reaguje na podanie losowego wejścia?
+7. Zaproponować zbiór wektorów o długości 25 (5×5), możliwie liczny, taki, żeby w nauczonej sieci wszystkie wzorce z tego zbioru były stabilne.
+8. Zaproponować zbiór uczący i wzorzec wejściowy, którego podanie do sieci zakończy się oscylacją między dwoma stanami.
+9. Przeprowadzić eksperyment dla zbioru złożonego z dużych bitmap (co najmniej 200x300), na przykład odpowiednio skonwertowanych zdjęć kotów (duże bitmapy nie są udostępnione w ramach projektu, należy takie znaleźć i wybrać).
