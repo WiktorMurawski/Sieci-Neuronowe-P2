@@ -19,7 +19,7 @@ def _train(name: str, rule: str, seed: int | None = None) -> HopfieldNetwork:
     if seed is not None:
         np.random.seed(seed)
     net = HopfieldNetwork(patterns.shape[1])
-    net.train(patterns, rule=rule, shape=shape, oja_eta=0.001, oja_epochs=40)
+    net.train(patterns, rule=rule, shape=shape)
     return net
 
 

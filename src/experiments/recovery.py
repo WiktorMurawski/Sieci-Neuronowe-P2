@@ -55,7 +55,7 @@ def run_recovery(
             for seed in SEEDS[:n_seeds]:
                 np.random.seed(seed)
                 net = HopfieldNetwork(n)
-                net.train(patterns, rule=rule, shape=shape, oja_eta=0.001, oja_epochs=35)
+                net.train(patterns, rule=rule, shape=shape)
 
                 for p in patterns:
                     for lvl in noise_levels:

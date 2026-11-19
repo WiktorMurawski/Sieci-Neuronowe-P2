@@ -23,7 +23,7 @@ def _recovery_summary(name: str, rule: str = "hebb", n_seeds: int = 5, n_trials:
     for seed in SEEDS[:n_seeds]:
         np.random.seed(seed)
         net = HopfieldNetwork(n)
-        net.train(patterns, rule=rule, shape=shape, oja_epochs=25)
+        net.train(patterns, rule=rule, shape=shape)
         for p in patterns:
             for lvl in NOISE:
                 for _ in range(n_trials):

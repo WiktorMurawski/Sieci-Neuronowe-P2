@@ -29,11 +29,11 @@ class HopfieldNetwork:
         np.fill_diagonal(self.W, 0.0)
 
     def _oja(self, patterns: np.ndarray, eta: float = 0.5,
-            epochs: int = 3000, tol: float = 1e-7, eps: float = 0.01):
+            epochs: int = 3000, tol: float = 1e-7, eps: float = 1e-2):
         """
-        Reguła Oji (wersja macierzowa, y = W x):
+        Reguła Oji (wersja macierzowa, y = W x), wsadowa:
             dW = eta * (W C - W C W^T W),   C = (1/p) * sum_mu x x^T,  x = xi/sqrt(N)
-        Startuje od W = eps*I
+        Startujemy od W = eps*I; W zbiega do rzutnika na span{xi^mu}.
         """
         X = patterns / np.sqrt(self.n)
         C = X.T @ X / len(patterns)
@@ -53,8 +53,6 @@ class HopfieldNetwork:
         patterns: Sequence[np.ndarray],
         rule: Literal["hebb", "oja"] = "hebb",
         shape: Optional[Tuple[int, int]] = None,
-        oja_eta: float = 0.5,
-        oja_epochs: int = 3000,
     ):
         flat = []
         for p in patterns:
@@ -71,7 +69,7 @@ class HopfieldNetwork:
         if rule == "hebb":
             self._hebb(patterns_arr)
         elif rule == "oja":
-            self._oja(patterns_arr, eta=oja_eta, epochs=oja_epochs)
+            self._oja(patterns_arr)
         else:
             raise ValueError("rule musi być 'hebb' lub 'oja'")
 
