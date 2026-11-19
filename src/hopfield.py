@@ -30,19 +30,16 @@ class HopfieldNetwork:
 
     def _oja(self, patterns: np.ndarray, eta: float = 0.001, epochs: int = 40):
         """
-        Stabilna wersja reguły Oji.
-        Start od Hebba, potem delikatna korekta z clippingiem.
+        Wersja reguły Oji.
         """
-        self._hebb(patterns)
         for _ in range(epochs):
             for p in patterns:
-                y = self.W @ p
-                y = np.clip(y, -30.0, 30.0)
-                delta = eta * (np.outer(y, p) - np.outer(y, y) @ self.W)
-                self.W += delta
+                for i in range(self.n):
+                    a = np.dot(self.W[i], p)
+                    self.W[i] += eta * (a * p - a**2 * self.W[i])
+
                 self.W = 0.5 * (self.W + self.W.T)
-                np.fill_diagonal(self.W, 0.0)
-                self.W = np.clip(self.W, -3.0, 3.0)
+                np.fill_diagonal(self.W, 0)
 
     def train(
         self,
