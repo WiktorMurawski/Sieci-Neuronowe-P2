@@ -1,3 +1,8 @@
+Zaimplementować pamięć skojarzeniową z użyciem sieci Hopfielda uczonej dwiema metodami: regułą Hebba i regułą Oji (imię i nazwisko w mianowniku: Erkki Oja).
+
+Sieć powinna pozwalać na łatwą konfigurację liczby neuronów oraz udostępniać wizualizację bieżącego stanu w formie prostokątnej bitmapy. Wizualizacja powinna pozwalać na obejrzenie kolejnych kroków zbiegania sieci do stanu stabilnego. Zaimplementować dwa warianty symulacji: synchroniczny i asynchroniczny.
+
+Zagadnienia do sprawdzenia:
 1. Skuteczność każdej z reguł uczenia i jej wpływ na liczbę stabilnych wzorców uczących
 2. Na początku projektu zostanie udostępniony zbiór wzorców. Których spośród dostarczonych zbiorów sieć uczy się poprawnie, a których nie? W których przypadkach wzorce uczące nie są stanami stabilnymi i dlaczego? [Uzasadnienie w raporcie odnieść do istniejących prac na temat sieci Hopfielda]
 3. Pośród zbiorów są dwa, które zawierają prawie identyczne wzory (jeden w wersji 25×25 i drugi w wersji 25×50). Dlaczego skuteczność odzyskiwania różni się znacząco na tych zbiorach?
@@ -7,3 +12,5 @@
 7. Zaproponować zbiór wektorów o długości 25 (5×5), możliwie liczny, taki, żeby w nauczonej sieci wszystkie wzorce z tego zbioru były stabilne.
 8. Zaproponować zbiór uczący i wzorzec wejściowy, którego podanie do sieci zakończy się oscylacją między dwoma stanami.
 9. Przeprowadzić eksperyment dla zbioru złożonego z dużych bitmap (co najmniej 200x300), na przykład odpowiednio skonwertowanych zdjęć kotów (duże bitmapy nie są udostępnione w ramach projektu, należy takie znaleźć i wybrać).
+
+Raport, poza informacjami o tym, jak działają reguły uczenia, powinien zawierać też wyjaśnienie, dlaczego te metody uczenia działają.

@@ -1,99 +1,109 @@
+"""
+Sieć Hopfielda
+
+Reguły uczenia: Hebb, Oja
+Aktualizacja: synchroniczna / asynchroniczna
+"""
+
+from __future__ import annotations
 import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
-from typing import List, Tuple, Optional, Literal
+from typing import List, Tuple, Optional, Literal, Sequence
 from matplotlib.widgets import Slider, Button
+import matplotlib.pyplot as plt
+
 
 class HopfieldNetwork:
     def __init__(self, n_neurons: int):
-        """
-        n_neurons: liczba neuronów (musi być zgodna z długością wektorów wzorców)
-        """
         self.n = n_neurons
         self.W = np.zeros((n_neurons, n_neurons))
-        self.patterns = None          # zapisane wzorce uczące (do analizy stabilności)
-        self.learning_rule = None
+        self.patterns: Optional[np.ndarray] = None
+        self.learning_rule: Optional[str] = None
+        self.shape: Optional[Tuple[int, int]] = None
 
-    def _hebb_learning(self, patterns: np.ndarray):
-        """Klasyczna reguła Hebba (outer product)."""
-        self.W = np.zeros((self.n, self.n))
-        for p in patterns:
-            self.W += np.outer(p, p)
-        np.fill_diagonal(self.W, 0)
-        self.W /= self.n               # normalizacja (opcjonalna, ale pomaga)
+    # ------------------------------------------------------------------
+    # Uczenie
+    # ------------------------------------------------------------------
+    def _hebb(self, patterns: np.ndarray):
+        """Klasyczna reguła Hebba (outer product + zero diagonal)."""
+        self.W = patterns.T @ patterns / self.n
+        np.fill_diagonal(self.W, 0.0)
 
-    def _oja_learning(self, patterns: np.ndarray, eta: float = 0.01, epochs: int = 100):
+    def _oja(self, patterns: np.ndarray, eta: float = 0.001, epochs: int = 40):
         """
-        Reguła Oji dostosowana do sieci Hopfielda.
-        Iteracyjnie aktualizujemy wagi, żeby uzyskać lepszą normalizację
-        i nieco lepszą pojemność przy skorelowanych wzorcach.
+        Stabilna wersja reguły Oji.
+        Start od Hebba, potem delikatna korekta z clippingiem.
         """
-        self.W = np.zeros((self.n, self.n))
+        self._hebb(patterns)
         for _ in range(epochs):
             for p in patterns:
-                # przewidywanie
                 y = self.W @ p
-                # reguła Oji: ΔW = η (y p^T - y y^T W)  (wersja macierzowa)
-                # uproszczona i stabilniejsza wersja dla Hopfielda:
-                self.W += eta * (np.outer(y, p) - np.outer(y, y) @ self.W)
-        np.fill_diagonal(self.W, 0)
-        # dodatkowo możemy zsymetryzować
-        self.W = 0.5 * (self.W + self.W.T)
+                y = np.clip(y, -30.0, 30.0)
+                delta = eta * (np.outer(y, p) - np.outer(y, y) @ self.W)
+                self.W += delta
+                self.W = 0.5 * (self.W + self.W.T)
+                np.fill_diagonal(self.W, 0.0)
+                self.W = np.clip(self.W, -3.0, 3.0)
 
-    def train(self, patterns: List[np.ndarray], rule: Literal["hebb", "oja"] = "hebb",
-              oja_eta: float = 0.01, oja_epochs: int = 50):
-        """
-        patterns: lista wektorów (każdy shape (n,) lub (h, w) – wtedy spłaszczamy)
-        """
-        # spłaszczenie i bipolaryzacja
+    def train(
+        self,
+        patterns: Sequence[np.ndarray],
+        rule: Literal["hebb", "oja"] = "hebb",
+        shape: Optional[Tuple[int, int]] = None,
+        oja_eta: float = 0.001,
+        oja_epochs: int = 40,
+    ):
         flat = []
         for p in patterns:
-            p = np.asarray(p).flatten()
-            if p.shape[0] != self.n:
-                raise ValueError(f"Wzorzec ma długość {p.shape[0]}, a sieć {self.n}")
-            # zakładamy, że wejście jest już ±1 lub 0/1
-            p = np.where(p > 0, 1, -1)
+            p = np.asarray(p, dtype=float).flatten()
+            if p.size != self.n:
+                raise ValueError(f"Wzorzec ma długość {p.size}, sieć ma {self.n}")
+            p = np.where(p > 0, 1.0, -1.0)
             flat.append(p)
-        patterns = np.array(flat)
-        self.patterns = patterns
+        patterns_arr = np.array(flat)
+        self.patterns = patterns_arr
         self.learning_rule = rule
+        self.shape = shape
 
         if rule == "hebb":
-            self._hebb_learning(patterns)
+            self._hebb(patterns_arr)
         elif rule == "oja":
-            self._oja_learning(patterns, eta=oja_eta, epochs=oja_epochs)
+            self._oja(patterns_arr, eta=oja_eta, epochs=oja_epochs)
         else:
             raise ValueError("rule musi być 'hebb' lub 'oja'")
 
+    # ------------------------------------------------------------------
+    # Dynamika
+    # ------------------------------------------------------------------
     def energy(self, state: np.ndarray) -> float:
-        """Energia Hopfielda: E = -0.5 * s^T W s"""
         s = state.flatten()
-        return -0.5 * s @ self.W @ s
+        return -0.5 * float(s @ self.W @ s)
 
-    def update(self, state: np.ndarray, mode: Literal["sync", "async"] = "async",
-               max_steps: int = 100, track: bool = False) -> Tuple[np.ndarray, List[np.ndarray]]:
-        """
-        Zwraca stan końcowy oraz (opcjonalnie) historię stanów.
-        """
-        s = state.flatten().copy()
+    def update(
+        self,
+        state: np.ndarray,
+        mode: Literal["sync", "async"] = "async",
+        max_steps: int = 100,
+        track: bool = False,
+    ) -> Tuple[np.ndarray, List[np.ndarray]]:
+        s = np.where(np.asarray(state).flatten() > 0, 1.0, -1.0).copy()
         history = [s.copy()] if track else []
 
         if mode == "sync":
             for _ in range(max_steps):
                 s_new = np.sign(self.W @ s)
-                s_new[s_new == 0] = 1          # umowa przy zerze
+                s_new[s_new == 0] = 1.0
                 if track:
                     history.append(s_new.copy())
                 if np.array_equal(s_new, s):
                     break
                 s = s_new
-        else:  # asynchronous
-            for step in range(max_steps):
+        else:
+            for _ in range(max_steps):
                 order = np.random.permutation(self.n)
                 changed = False
                 for i in order:
                     h = self.W[i] @ s
-                    new_val = 1 if h >= 0 else -1
+                    new_val = 1.0 if h >= 0 else -1.0
                     if new_val != s[i]:
                         s[i] = new_val
                         changed = True
@@ -101,19 +111,48 @@ class HopfieldNetwork:
                             history.append(s.copy())
                 if not changed:
                     break
-
         return s, history
 
-    def is_stable(self, pattern: np.ndarray) -> bool:
-        """Czy dany wzorzec jest stabilnym stanem stałym."""
-        p = np.where(np.asarray(pattern).flatten() > 0, 1, -1)
-        recovered, _ = self.update(p, mode="sync", max_steps=1)
-        return np.array_equal(recovered, p)
+    def is_stable(self, pattern: np.ndarray, mode: Literal["sync", "async"] = "sync") -> bool:
+        p = np.where(np.asarray(pattern).flatten() > 0, 1.0, -1.0)
+        recovered, _ = self.update(p, mode=mode, max_steps=5)
+        return bool(np.array_equal(recovered, p))
 
-    def visualize(self, state: np.ndarray, shape: Tuple[int, int], title: str = "",
-                  ax: Optional[plt.Axes] = None):
-        """Wyświetla stan jako bitmapę."""
-        img = state.reshape(shape)
+    def stability_report(self) -> dict:
+        if self.patterns is None:
+            raise RuntimeError("Sieć nie została jeszcze nauczona")
+        results = []
+        for i, p in enumerate(self.patterns):
+            results.append({
+                "index": i,
+                "stable_sync": self.is_stable(p, mode="sync"),
+                "stable_async": self.is_stable(p, mode="async"),
+                "energy": self.energy(p),
+            })
+        n_stable = sum(r["stable_sync"] for r in results)
+        return {
+            "n_patterns": len(self.patterns),
+            "n_stable_sync": n_stable,
+            "fraction_stable": n_stable / len(self.patterns),
+            "details": results,
+            "rule": self.learning_rule,
+        }
+
+    def corrupt(self, pattern: np.ndarray, noise_level: float) -> np.ndarray:
+        p = np.where(np.asarray(pattern).flatten() > 0, 1.0, -1.0).copy()
+        n_flip = int(round(noise_level * self.n))
+        if n_flip > 0:
+            idx = np.random.choice(self.n, size=n_flip, replace=False)
+            p[idx] *= -1
+        return p
+
+    # ------------------------------------------------------------------
+    # Wizualizacja
+    # ------------------------------------------------------------------
+    def visualize(self, state: np.ndarray, title: str = "", ax=None):
+        if self.shape is None:
+            raise ValueError("Nie ustawiono shape - podaj shape przy train()")
+        img = np.asarray(state).reshape(self.shape)
         if ax is None:
             plt.figure(figsize=(4, 4))
             ax = plt.gca()
@@ -121,47 +160,25 @@ class HopfieldNetwork:
         ax.set_title(title)
         ax.axis("off")
 
-    def animate_convergence(self, initial_state: np.ndarray, shape: Tuple[int, int],
-                            mode: Literal["sync", "async"] = "async",
-                            max_steps: int = 50, interval: int = 300):
-        """Animacja zbiegania do stanu stabilnego."""
-        final, history = self.update(initial_state, mode=mode, max_steps=max_steps, track=True)
-
-        fig, ax = plt.subplots(figsize=(5, 5))
-        im = ax.imshow(history[0].reshape(shape), cmap="gray", vmin=-1, vmax=1)
-        ax.axis("off")
-        title = ax.set_title(f"Krok 0 / {len(history)-1}")
-
-        def update(frame):
-            im.set_data(history[frame].reshape(shape))
-            title.set_text(f"Krok {frame} / {len(history)-1}")
-            return [im, title]
-
-        ani = FuncAnimation(fig, update, frames=len(history), interval=interval, blit=True, repeat=False)
-        plt.show()
-        return final, history
-
-    def interactive_convergence(self, initial_state: np.ndarray, shape: Tuple[int, int],
-                            mode: Literal["sync", "async"] = "async",
-                            max_steps: int = 80):
-        """
-        Interaktywny podgląd zbiegania.
-        """
+    def interactive_convergence(
+        self,
+        initial_state: np.ndarray,
+        mode: Literal["sync", "async"] = "async",
+        max_steps: int = 80,
+    ):
+        if self.shape is None:
+            raise ValueError("Nie ustawiono shape")
         final, history = self.update(initial_state, mode=mode, max_steps=max_steps, track=True)
         n_steps = len(history)
 
         fig, ax = plt.subplots(figsize=(6, 6))
-        plt.subplots_adjust(bottom=0.25)          # miejsce na suwak i przyciski
-
-        im = ax.imshow(history[0].reshape(shape), cmap="gray", vmin=-1, vmax=1)
-        ax.set_title(f"Krok 0 / {n_steps-1}   |   Energia: {self.energy(history[0]):.2f}")
+        plt.subplots_adjust(bottom=0.25)
+        im = ax.imshow(history[0].reshape(self.shape), cmap="gray", vmin=-1, vmax=1)
+        ax.set_title(f"Krok 0 / {n_steps-1}  |  E = {self.energy(history[0]):.1f}")
         ax.axis("off")
 
-        # Suwak
         ax_slider = plt.axes([0.15, 0.12, 0.7, 0.04])
-        slider = Slider(ax_slider, "Krok", 0, n_steps-1, valinit=0, valstep=1)
-
-        # Przyciski
+        slider = Slider(ax_slider, "Krok", 0, n_steps - 1, valinit=0, valstep=1)
         ax_prev = plt.axes([0.25, 0.03, 0.15, 0.05])
         ax_next = plt.axes([0.60, 0.03, 0.15, 0.05])
         btn_prev = Button(ax_prev, "◀ Poprzedni")
@@ -169,24 +186,12 @@ class HopfieldNetwork:
 
         def update_frame(i):
             i = int(i)
-            im.set_data(history[i].reshape(shape))
-            ax.set_title(f"Krok {i} / {n_steps-1}   |   Energia: {self.energy(history[i]):.2f}")
+            im.set_data(history[i].reshape(self.shape))
+            ax.set_title(f"Krok {i} / {n_steps-1}  |  E = {self.energy(history[i]):.1f})")
             fig.canvas.draw_idle()
 
-        def on_slider(val):
-            update_frame(val)
-
-        def on_prev(event):
-            new_val = max(0, slider.val - 1)
-            slider.set_val(new_val)
-
-        def on_next(event):
-            new_val = min(n_steps-1, slider.val + 1)
-            slider.set_val(new_val)
-
-        slider.on_changed(on_slider)
-        btn_prev.on_clicked(on_prev)
-        btn_next.on_clicked(on_next)
-
+        slider.on_changed(lambda v: update_frame(v))
+        btn_prev.on_clicked(lambda e: slider.set_val(max(0, slider.val - 1)))
+        btn_next.on_clicked(lambda e: slider.set_val(min(n_steps - 1, slider.val + 1)))
         plt.show()
         return final, history

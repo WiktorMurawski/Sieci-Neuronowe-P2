@@ -1,0 +1,108 @@
+PUNKT 4: Odzyskiwanie z zaszumionego wejścia
+=================================================================
+Ziarna: [0, 1, 2, 3, 4], prób na wzorzec: 6, mode=async
+
+--- small-7x7  (5 wzorców, N=49) ---
+  reguła = hebb
+    noise=0.00: overlap = 0.878 ± 0.190   perfect = 60.0%
+    noise=0.10: overlap = 0.815 ± 0.204   perfect = 42.0%
+    noise=0.20: overlap = 0.767 ± 0.220   perfect = 32.7%
+    noise=0.30: overlap = 0.730 ± 0.233   perfect = 30.0%
+    noise=0.40: overlap = 0.481 ± 0.381   perfect = 17.3%
+
+  reguła = oja
+    noise=0.00: overlap = 1.000 ± 0.000   perfect = 100.0%
+    noise=0.10: overlap = 1.000 ± 0.000   perfect = 100.0%
+    noise=0.20: overlap = 0.974 ± 0.098   perfect = 92.7%
+    noise=0.30: overlap = 0.888 ± 0.218   perfect = 74.7%
+    noise=0.40: overlap = 0.512 ± 0.398   perfect = 29.3%
+
+--- letters-abc-8x12  (3 wzorców, N=96) ---
+  reguła = hebb
+    noise=0.00: overlap = 0.903 ± 0.026   perfect = 0.0%
+    noise=0.10: overlap = 0.903 ± 0.026   perfect = 0.0%
+    noise=0.20: overlap = 0.903 ± 0.026   perfect = 0.0%
+    noise=0.30: overlap = 0.903 ± 0.026   perfect = 0.0%
+    noise=0.40: overlap = 0.903 ± 0.026   perfect = 0.0%
+
+  reguła = oja
+    noise=0.00: overlap = 0.979 ± 0.029   perfect = 66.7%
+    noise=0.10: overlap = 0.962 ± 0.042   perfect = 51.1%
+    noise=0.20: overlap = 0.947 ± 0.045   perfect = 36.7%
+    noise=0.30: overlap = 0.942 ± 0.047   perfect = 34.4%
+    noise=0.40: overlap = 0.915 ± 0.064   perfect = 24.4%
+
+--- animals-14x9  (6 wzorców, N=126) ---
+  reguła = hebb
+    noise=0.00: overlap = 0.728 ± 0.200   perfect = 33.3%
+    noise=0.10: overlap = 0.697 ± 0.209   perfect = 28.9%
+    noise=0.20: overlap = 0.671 ± 0.211   perfect = 25.0%
+    noise=0.30: overlap = 0.602 ± 0.205   perfect = 15.0%
+    noise=0.40: overlap = 0.494 ± 0.317   perfect = 8.3%
+
+  reguła = oja
+    noise=0.00: overlap = 1.000 ± 0.000   perfect = 100.0%
+    noise=0.10: overlap = 1.000 ± 0.000   perfect = 100.0%
+    noise=0.20: overlap = 1.000 ± 0.000   perfect = 100.0%
+    noise=0.30: overlap = 0.987 ± 0.082   perfect = 97.2%
+    noise=0.40: overlap = 0.789 ± 0.308   perfect = 64.4%
+
+--- letters-14x20  (26 wzorców, N=280) ---
+  reguła = hebb
+    noise=0.00: overlap = 0.811 ± 0.071   perfect = 0.0%
+    noise=0.10: overlap = 0.811 ± 0.071   perfect = 0.0%
+    noise=0.20: overlap = 0.811 ± 0.071   perfect = 0.0%
+    noise=0.30: overlap = 0.811 ± 0.071   perfect = 0.0%
+    noise=0.40: overlap = 0.811 ± 0.071   perfect = 0.0%
+
+  reguła = oja
+    noise=0.00: overlap = 0.811 ± 0.069   perfect = 0.0%
+    noise=0.10: overlap = 0.811 ± 0.069   perfect = 0.0%
+    noise=0.20: overlap = 0.811 ± 0.069   perfect = 0.0%
+    noise=0.30: overlap = 0.811 ± 0.069   perfect = 0.0%
+    noise=0.40: overlap = 0.811 ± 0.069   perfect = 0.0%
+
+--- OCRA-12x30  (7 wzorców, N=360) ---
+  reguła = hebb
+    noise=0.00: overlap = 0.668 ± 0.186   perfect = 14.3%
+    noise=0.10: overlap = 0.553 ± 0.241   perfect = 2.4%
+    noise=0.20: overlap = 0.557 ± 0.240   perfect = 2.9%
+    noise=0.30: overlap = 0.557 ± 0.236   perfect = 2.9%
+    noise=0.40: overlap = 0.528 ± 0.250   perfect = 1.4%
+
+  reguła = oja
+    noise=0.00: overlap = 1.000 ± 0.000   perfect = 100.0%
+    noise=0.10: overlap = 1.000 ± 0.000   perfect = 100.0%
+    noise=0.20: overlap = 1.000 ± 0.000   perfect = 100.0%
+    noise=0.30: overlap = 1.000 ± 0.000   perfect = 100.0%
+    noise=0.40: overlap = 0.950 ± 0.129   perfect = 85.2%
+
+--- large-25x25  (6 wzorców, N=625) ---
+  reguła = hebb
+    noise=0.00: overlap = 0.984 ± 0.036   perfect = 83.3%
+    noise=0.10: overlap = 0.948 ± 0.096   perfect = 70.0%
+    noise=0.20: overlap = 0.909 ± 0.129   perfect = 57.8%
+    noise=0.30: overlap = 0.880 ± 0.139   perfect = 47.8%
+    noise=0.40: overlap = 0.831 ± 0.204   perfect = 41.1%
+
+  reguła = oja
+    noise=0.00: overlap = 1.000 ± 0.000   perfect = 100.0%
+    noise=0.10: overlap = 1.000 ± 0.000   perfect = 100.0%
+    noise=0.20: overlap = 1.000 ± 0.000   perfect = 100.0%
+    noise=0.30: overlap = 1.000 ± 0.000   perfect = 100.0%
+    noise=0.40: overlap = 0.997 ± 0.039   perfect = 99.4%
+
+--- large-25x25.plus  (15 wzorców, N=625) ---
+  reguła = hebb
+    noise=0.00: overlap = 0.470 ± 0.232   perfect = 6.7%
+    noise=0.10: overlap = 0.470 ± 0.232   perfect = 6.7%
+    noise=0.20: overlap = 0.470 ± 0.232   perfect = 6.7%
+    noise=0.30: overlap = 0.460 ± 0.232   perfect = 5.8%
+    noise=0.40: overlap = 0.422 ± 0.237   perfect = 2.7%
+
+  reguła = oja
+    noise=0.00: overlap = 0.911 ± 0.228   perfect = 66.7%
+    noise=0.10: overlap = 0.911 ± 0.222   perfect = 66.7%
+    noise=0.20: overlap = 0.910 ± 0.222   perfect = 66.7%
+    noise=0.30: overlap = 0.905 ± 0.228   perfect = 66.7%
+    noise=0.40: overlap = 0.864 ± 0.281   perfect = 65.6%

@@ -1,0 +1,31 @@
+PUNKT 5: Zbiór z podobnymi elementami vs zbiór zróżnicowany
+=================================================================
+
+letters-abc-8x12  - podobne (litery A/B/C)  (3 wzorców, 8×12)
+   noise      Hebb overlap       Oja overlap
+    0.00  0.903±0.026     0.944±0.043
+    0.10  0.903±0.026     0.931±0.043
+    0.20  0.903±0.026     0.933±0.043
+    0.30  0.903±0.026     0.922±0.048
+    0.40  0.903±0.026     0.911±0.054
+
+animals-14x9  - bardziej zróżnicowane (zwierzęta)  (6 wzorców, 14×9)
+   noise      Hebb overlap       Oja overlap
+    0.00  0.728±0.200     1.000±0.000
+    0.10  0.697±0.209     1.000±0.000
+    0.20  0.671±0.211     1.000±0.000
+    0.30  0.602±0.205     0.989±0.067
+    0.40  0.494±0.317     0.786±0.317
+
+small-7x7  - kontrola (małe, proste kształty)  (5 wzorców, 7×7)
+   noise      Hebb overlap       Oja overlap
+    0.00  0.878±0.190     1.000±0.000
+    0.10  0.815±0.204     1.000±0.000
+    0.20  0.767±0.220     0.981±0.081
+    0.30  0.730±0.233     0.883±0.227
+    0.40  0.481±0.381     0.491±0.387
+
+Wniosek do raportu:
+  Przy podobnej liczności zbioru o silniej skorelowanych / podobnych
+  wzorcach (litery) sieć ma większy problem z rozróżnieniem atraktorów.
+  Oja zwykle łagodzi ten efekt lepiej niż czysty Hebb.

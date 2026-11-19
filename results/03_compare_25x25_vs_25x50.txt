@@ -1,0 +1,19 @@
+PUNKT 3: large-25x25 vs large-25x50 (prawie identyczne wzorce)
+=================================================================
+
+Stabilność (Hebb):
+  25×25 : 5/6 stabilnych
+  25×50 : 0/6 stabilnych
+
+Odzyskiwanie (overlap, Hebb, mode=async):
+   noise               25×25               25×50
+    0.00  0.984±0.036 (83.3%)  0.740±0.108 ( 0.0%)
+    0.10  0.925±0.119 (62.9%)  0.740±0.107 ( 0.0%)
+    0.20  0.899±0.130 (53.3%)  0.740±0.108 ( 0.0%)
+    0.30  0.887±0.137 (49.2%)  0.739±0.108 ( 0.0%)
+    0.40  0.817±0.204 (38.3%)  0.738±0.108 ( 0.0%)
+
+Wniosek do raportu:
+  Na zbiorze 25×50 żaden wzorzec nie jest stabilny i sieć nie odzyskuje
+  oryginałów nawet przy zerowym szumie. Przyczyna leży w strukturze
+  korelacji i efektywnym obciążeniu pamięci.

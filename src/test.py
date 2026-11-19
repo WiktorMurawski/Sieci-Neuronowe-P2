@@ -26,8 +26,6 @@ noisy = patterns[0].copy()
 noise_idx = np.random.choice(25, size=6, replace=False)
 noisy.flat[noise_idx] *= -1
 
-final, history = net.animate_convergence(noisy, shape=(5, 5), mode="async")
-print("Energia końcowa:", net.energy(final))
-
-final, history = net.interactive_convergence(noisy, shape=(5, 5), mode="async")
+net.shape = (5,5)
+final, history = net.interactive_convergence(noisy, mode="async")
 print("Energia końcowa:", net.energy(final))
