@@ -32,7 +32,7 @@ def generate_all_previews():
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Eksperymenty Hopfield – punkty 1–6")
+    parser = argparse.ArgumentParser(description="Eksperymenty Hopfield - punkty 1-6")
     parser.add_argument("--list", action="store_true", help="Pokaż dostępne zbiory")
     parser.add_argument(
         "--only",

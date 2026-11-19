@@ -28,26 +28,33 @@ class HopfieldNetwork:
         self.W = patterns.T @ patterns / self.n
         np.fill_diagonal(self.W, 0.0)
 
-    def _oja(self, patterns: np.ndarray, eta: float = 0.001, epochs: int = 40):
+    def _oja(self, patterns: np.ndarray, eta: float = 0.5,
+            epochs: int = 3000, tol: float = 1e-7, eps: float = 0.01):
         """
-        Wersja reguły Oji.
+        Reguła Oji (wersja macierzowa, y = W x):
+            dW = eta * (W C - W C W^T W),   C = (1/p) * sum_mu x x^T,  x = xi/sqrt(N)
+        Startuje od W = eps*I
         """
+        X = patterns / np.sqrt(self.n)
+        C = X.T @ X / len(patterns)
+        W = eps * np.eye(self.n)
         for _ in range(epochs):
-            for p in patterns:
-                for i in range(self.n):
-                    a = np.dot(self.W[i], p)
-                    self.W[i] += eta * (a * p - a**2 * self.W[i])
-
-                self.W = 0.5 * (self.W + self.W.T)
-                np.fill_diagonal(self.W, 0)
+            Y = W @ C
+            dW = eta * (Y - Y @ W.T @ W)
+            W += dW
+            if np.abs(dW).max() < tol:
+                break
+        W = (W + W.T) / 2
+        np.fill_diagonal(W, 0.0)
+        self.W = W
 
     def train(
         self,
         patterns: Sequence[np.ndarray],
         rule: Literal["hebb", "oja"] = "hebb",
         shape: Optional[Tuple[int, int]] = None,
-        oja_eta: float = 0.001,
-        oja_epochs: int = 40,
+        oja_eta: float = 0.5,
+        oja_epochs: int = 3000,
     ):
         flat = []
         for p in patterns:
@@ -178,13 +185,13 @@ class HopfieldNetwork:
         slider = Slider(ax_slider, "Krok", 0, n_steps - 1, valinit=0, valstep=1)
         ax_prev = plt.axes([0.25, 0.03, 0.15, 0.05])
         ax_next = plt.axes([0.60, 0.03, 0.15, 0.05])
-        btn_prev = Button(ax_prev, "◀ Poprzedni")
-        btn_next = Button(ax_next, "Następny ▶")
+        btn_prev = Button(ax_prev, "Poprzedni")
+        btn_next = Button(ax_next, "Następny")
 
         def update_frame(i):
             i = int(i)
             im.set_data(history[i].reshape(self.shape))
-            ax.set_title(f"Krok {i} / {n_steps-1}  |  E = {self.energy(history[i]):.1f})")
+            ax.set_title(f"Krok {i} / {n_steps-1}  |  E = {self.energy(history[i]):.1f}")
             fig.canvas.draw_idle()
 
         slider.on_changed(lambda v: update_frame(v))

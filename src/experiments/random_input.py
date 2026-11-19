@@ -74,5 +74,5 @@ def run_random_input(
 
     report_path = out_dir / "06_random_input.txt"
     report_path.write_text("\n".join(lines), encoding="utf-8")
-    print(f"  → zapisano {report_path}")
+    print(f"  -> zapisano {report_path}")
     return all_results

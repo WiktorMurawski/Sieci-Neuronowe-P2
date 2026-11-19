@@ -14,13 +14,13 @@ def project_root() -> Path:
 
 DATASETS = {
     "small-7x7":        {"file": "small-7x7.csv",        "shape": (7, 7)},
-    "letters-abc-8x12": {"file": "letters-abc-8x12.csv", "shape": (8, 12)},
-    "animals-14x9":     {"file": "animals-14x9.csv",     "shape": (14, 9)},
-    "letters-14x20":    {"file": "letters-14x20.csv",    "shape": (14, 20)},
-    "OCRA-12x30":       {"file": "OCRA-12x30-cut.csv",   "shape": (12, 30)},
+    "letters-abc-8x12": {"file": "letters-abc-8x12.csv", "shape": (12, 8)},
+    "animals-14x9":     {"file": "animals-14x9.csv",     "shape": (9, 14)},
+    "letters-14x20":    {"file": "letters-14x20.csv",    "shape": (20, 14)},
+    "OCRA-12x30":       {"file": "OCRA-12x30-cut.csv",   "shape": (30, 12)},
     "large-25x25":      {"file": "large-25x25.csv",      "shape": (25, 25)},
     "large-25x25.plus": {"file": "large-25x25.plus.csv", "shape": (25, 25)},
-    "large-25x50":      {"file": "large-25x50.csv",      "shape": (25, 50)},
+    "large-25x50":      {"file": "large-25x50.csv",      "shape": (50, 25)},
 }
 
 
