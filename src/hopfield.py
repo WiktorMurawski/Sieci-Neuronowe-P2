@@ -28,25 +28,21 @@ class HopfieldNetwork:
         self.W = patterns.T @ patterns / self.n
         np.fill_diagonal(self.W, 0.0)
 
-    def _oja(self, patterns: np.ndarray, eta: float = 0.5,
-            epochs: int = 3000, tol: float = 1e-7, eps: float = 1e-2):
+    def _oja(self, patterns: np.ndarray, eta: float = 0.001, epochs: int = 40):
         """
-        Reguła Oji (wersja macierzowa, y = W x), wsadowa:
-            dW = eta * (W C - W C W^T W),   C = (1/p) * sum_mu x x^T,  x = xi/sqrt(N)
-        Startujemy od W = eps*I; W zbiega do rzutnika na span{xi^mu}.
+        Stabilna wersja reguły Oji.
+        Start od Hebba, potem delikatna korekta z clippingiem.
         """
-        X = patterns / np.sqrt(self.n)
-        C = X.T @ X / len(patterns)
-        W = eps * np.eye(self.n)
+        self._hebb(patterns)
         for _ in range(epochs):
-            Y = W @ C
-            dW = eta * (Y - Y @ W.T @ W)
-            W += dW
-            if np.abs(dW).max() < tol:
-                break
-        W = (W + W.T) / 2
-        np.fill_diagonal(W, 0.0)
-        self.W = W
+            for p in patterns:
+                y = self.W @ p
+                y = np.clip(y, -30.0, 30.0)
+                delta = eta * (np.outer(y, p) - np.outer(y, y) @ self.W)
+                self.W += delta
+                self.W = 0.5 * (self.W + self.W.T)
+                np.fill_diagonal(self.W, 0.0)
+                self.W = np.clip(self.W, -3.0, 3.0)
 
     def train(
         self,
