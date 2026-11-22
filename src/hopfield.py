@@ -28,7 +28,28 @@ class HopfieldNetwork:
         self.W = patterns.T @ patterns / self.n
         np.fill_diagonal(self.W, 0.0)
 
-    def _oja(self, patterns: np.ndarray, eta: float = 0.001, epochs: int = 40):
+    def _oja(self, patterns: np.ndarray, lr: float = None, epochs: int = 50):
+        """
+        Reguła Oji zaadaptowana do sieci hopfielda:
+        dW = lr * (y @ p.T - y @ y.T @ W), where y = W @ p
+        """
+        if lr is None:
+            lr = 0.1 / (self.n ** 2)
+
+        self._hebb(patterns)
+        W = self.W
+
+        for _ in range(epochs):
+            for p in patterns:
+                y = W @ p
+                dW = lr * (np.outer(y, p) - np.outer(y, y) @ W)
+                W += dW
+                W = 0.5 * (W + W.T)
+                np.fill_diagonal(W, 0.0)
+
+        self.W = W
+
+    def old_oja(self, patterns: np.ndarray, eta: float = 0.001, epochs: int = 40):
         """
         Stabilna wersja reguły Oji.
         Start od Hebba, potem delikatna korekta z clippingiem.
@@ -69,9 +90,7 @@ class HopfieldNetwork:
         else:
             raise ValueError("rule musi być 'hebb' lub 'oja'")
 
-    # ------------------------------------------------------------------
-    # Dynamika
-    # ------------------------------------------------------------------
+
     def energy(self, state: np.ndarray) -> float:
         s = state.flatten()
         return -0.5 * float(s @ self.W @ s)
@@ -144,19 +163,6 @@ class HopfieldNetwork:
             p[idx] *= -1
         return p
 
-    # ------------------------------------------------------------------
-    # Wizualizacja
-    # ------------------------------------------------------------------
-    def visualize(self, state: np.ndarray, title: str = "", ax=None):
-        if self.shape is None:
-            raise ValueError("Nie ustawiono shape - podaj shape przy train()")
-        img = np.asarray(state).reshape(self.shape)
-        if ax is None:
-            plt.figure(figsize=(4, 4))
-            ax = plt.gca()
-        ax.imshow(img, cmap="gray", vmin=-1, vmax=1)
-        ax.set_title(title)
-        ax.axis("off")
 
     def interactive_convergence(
         self,

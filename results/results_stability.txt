@@ -1,0 +1,182 @@
+=== Stabilnosc wzorcow uczacych (Hebb vs Oja) ===
+
+
+--- small-7x7  |  n=49  |  #wzorców=5  |  shape=(7, 7) ---
+  hebb : stable_sync=3/5 (60%)  |  mean_async_stab=0.60  |  approx_stable_async=3  |  mean_E=-32.95
+      pat[0]: E=-29.2  async_stab=1.00
+      pat[1]: E=-32.0  async_stab=1.00
+      pat[2]: E=-40.0  async_stab=1.00
+      pat[3]: E=-32.0  async_stab=0.00
+      pat[4]: E=-31.5  async_stab=0.00
+  oja  : stable_sync=5/5 (100%)  |  mean_async_stab=1.00  |  approx_stable_async=5  |  mean_E=-25.93
+      pat[0]: E=-25.7  async_stab=1.00
+      pat[1]: E=-24.9  async_stab=1.00
+      pat[2]: E=-28.5  async_stab=1.00
+      pat[3]: E=-25.4  async_stab=1.00
+      pat[4]: E=-25.2  async_stab=1.00
+
+--- letters-abc-8x12  |  n=96  |  #wzorców=3  |  shape=(12, 8) ---
+  hebb : stable_sync=0/3 (0%)  |  mean_async_stab=0.00  |  approx_stable_async=0  |  mean_E=-108.86
+      pat[0]: E=-108.4  async_stab=0.00
+      pat[1]: E=-111.5  async_stab=0.00
+      pat[2]: E=-106.7  async_stab=0.00
+  oja  : stable_sync=0/3 (0%)  |  mean_async_stab=0.00  |  approx_stable_async=0  |  mean_E=-71.56
+      pat[0]: E=-71.3  async_stab=0.00
+      pat[1]: E=-73.1  async_stab=0.00
+      pat[2]: E=-70.3  async_stab=0.00
+
+--- animals-14x9  |  n=126  |  #wzorców=6  |  shape=(9, 14) ---
+  hebb : stable_sync=2/6 (33%)  |  mean_async_stab=0.33  |  approx_stable_async=2  |  mean_E=-76.29
+      pat[0]: E=-75.5  async_stab=0.00
+      pat[1]: E=-78.7  async_stab=0.00
+      pat[2]: E=-85.0  async_stab=0.00
+      pat[3]: E=-68.6  async_stab=1.00
+      pat[4]: E=-66.7  async_stab=1.00
+      pat[5]: E=-83.3  async_stab=0.00
+  oja  : stable_sync=4/6 (67%)  |  mean_async_stab=0.67  |  approx_stable_async=4  |  mean_E=-68.39
+      pat[0]: E=-67.9  async_stab=1.00
+      pat[1]: E=-69.4  async_stab=1.00
+      pat[2]: E=-73.2  async_stab=0.00
+      pat[3]: E=-64.3  async_stab=1.00
+      pat[4]: E=-63.4  async_stab=1.00
+      pat[5]: E=-72.2  async_stab=0.00
+
+--- letters-14x20  |  n=280  |  #wzorców=26  |  shape=(20, 14) ---
+  hebb : stable_sync=0/26 (0%)  |  mean_async_stab=0.00  |  approx_stable_async=0  |  mean_E=-2019.24
+      pat[0]: E=-2042.9  async_stab=0.00
+      pat[1]: E=-2240.8  async_stab=0.00
+      pat[2]: E=-2243.5  async_stab=0.00
+      pat[3]: E=-2044.3  async_stab=0.00
+      pat[4]: E=-2193.1  async_stab=0.00
+      pat[5]: E=-2159.5  async_stab=0.00
+      pat[6]: E=-1787.1  async_stab=0.00
+      pat[7]: E=-2203.3  async_stab=0.00
+      pat[8]: E=-2268.6  async_stab=0.00
+      pat[9]: E=-2019.7  async_stab=0.00
+      pat[10]: E=-1901.8  async_stab=0.00
+      pat[11]: E=-2230.4  async_stab=0.00
+      pat[12]: E=-1513.3  async_stab=0.00
+      pat[13]: E=-2314.6  async_stab=0.00
+      pat[14]: E=-2283.3  async_stab=0.00
+      pat[15]: E=-2104.3  async_stab=0.00
+      pat[16]: E=-1992.8  async_stab=0.00
+      pat[17]: E=-2349.3  async_stab=0.00
+      pat[18]: E=-1963.6  async_stab=0.00
+      pat[19]: E=-2266.5  async_stab=0.00
+      pat[20]: E=-2285.8  async_stab=0.00
+      pat[21]: E=-1806.8  async_stab=0.00
+      pat[22]: E=-1371.5  async_stab=0.00
+      pat[23]: E=-1667.0  async_stab=0.00
+      pat[24]: E=-1510.0  async_stab=0.00
+      pat[25]: E=-1736.3  async_stab=0.00
+  oja  : stable_sync=1/26 (4%)  |  mean_async_stab=0.04  |  approx_stable_async=1  |  mean_E=-172.13
+      pat[0]: E=-173.9  async_stab=0.00
+      pat[1]: E=-176.3  async_stab=0.00
+      pat[2]: E=-173.3  async_stab=0.00
+      pat[3]: E=-180.6  async_stab=0.00
+      pat[4]: E=-175.1  async_stab=0.00
+      pat[5]: E=-183.7  async_stab=0.00
+      pat[6]: E=-173.5  async_stab=0.00
+      pat[7]: E=-177.0  async_stab=0.00
+      pat[8]: E=-190.8  async_stab=0.00
+      pat[9]: E=-177.0  async_stab=0.00
+      pat[10]: E=-163.7  async_stab=0.00
+      pat[11]: E=-191.6  async_stab=1.00
+      pat[12]: E=-138.5  async_stab=0.00
+      pat[13]: E=-182.2  async_stab=0.00
+      pat[14]: E=-186.7  async_stab=0.00
+      pat[15]: E=-170.4  async_stab=0.00
+      pat[16]: E=-181.9  async_stab=0.00
+      pat[17]: E=-184.7  async_stab=0.00
+      pat[18]: E=-159.3  async_stab=0.00
+      pat[19]: E=-181.5  async_stab=0.00
+      pat[20]: E=-179.8  async_stab=0.00
+      pat[21]: E=-163.3  async_stab=0.00
+      pat[22]: E=-135.3  async_stab=0.00
+      pat[23]: E=-160.8  async_stab=0.00
+      pat[24]: E=-155.4  async_stab=0.00
+      pat[25]: E=-159.0  async_stab=0.00
+
+--- OCRA-12x30  |  n=360  |  #wzorców=7  |  shape=(30, 12) ---
+  hebb : stable_sync=1/7 (14%)  |  mean_async_stab=0.14  |  approx_stable_async=1  |  mean_E=-272.11
+      pat[0]: E=-215.8  async_stab=1.00
+      pat[1]: E=-296.1  async_stab=0.00
+      pat[2]: E=-293.9  async_stab=0.00
+      pat[3]: E=-265.2  async_stab=0.00
+      pat[4]: E=-262.2  async_stab=0.00
+      pat[5]: E=-297.6  async_stab=0.00
+      pat[6]: E=-273.9  async_stab=0.00
+  oja  : stable_sync=1/7 (14%)  |  mean_async_stab=0.14  |  approx_stable_async=1  |  mean_E=-241.82
+      pat[0]: E=-204.8  async_stab=1.00
+      pat[1]: E=-258.1  async_stab=0.00
+      pat[2]: E=-256.9  async_stab=0.00
+      pat[3]: E=-237.6  async_stab=0.00
+      pat[4]: E=-233.8  async_stab=0.00
+      pat[5]: E=-258.4  async_stab=0.00
+      pat[6]: E=-243.1  async_stab=0.00
+
+--- large-25x25  |  n=625  |  #wzorców=6  |  shape=(25, 25) ---
+  hebb : stable_sync=5/6 (83%)  |  mean_async_stab=0.83  |  approx_stable_async=5  |  mean_E=-374.99
+      pat[0]: E=-322.3  async_stab=1.00
+      pat[1]: E=-404.6  async_stab=1.00
+      pat[2]: E=-309.8  async_stab=1.00
+      pat[3]: E=-440.5  async_stab=0.00
+      pat[4]: E=-379.4  async_stab=1.00
+      pat[5]: E=-393.3  async_stab=1.00
+  oja  : stable_sync=5/6 (83%)  |  mean_async_stab=0.83  |  approx_stable_async=5  |  mean_E=-368.03
+      pat[0]: E=-321.2  async_stab=1.00
+      pat[1]: E=-394.8  async_stab=1.00
+      pat[2]: E=-309.9  async_stab=1.00
+      pat[3]: E=-427.0  async_stab=0.00
+      pat[4]: E=-371.6  async_stab=1.00
+      pat[5]: E=-383.6  async_stab=1.00
+
+--- large-25x25.plus  |  n=625  |  #wzorców=15  |  shape=(25, 25) ---
+  hebb : stable_sync=1/15 (7%)  |  mean_async_stab=0.07  |  approx_stable_async=1  |  mean_E=-504.3
+      pat[0]: E=-367.5  async_stab=0.00
+      pat[1]: E=-573.2  async_stab=0.00
+      pat[2]: E=-327.2  async_stab=1.00
+      pat[3]: E=-713.0  async_stab=0.00
+      pat[4]: E=-475.0  async_stab=0.00
+      pat[5]: E=-572.9  async_stab=0.00
+      pat[6]: E=-731.4  async_stab=0.00
+      pat[7]: E=-495.6  async_stab=0.00
+      pat[8]: E=-543.7  async_stab=0.00
+      pat[9]: E=-353.9  async_stab=0.00
+      pat[10]: E=-386.5  async_stab=0.00
+      pat[11]: E=-480.2  async_stab=0.00
+      pat[12]: E=-691.7  async_stab=0.00
+      pat[13]: E=-380.4  async_stab=0.00
+      pat[14]: E=-472.4  async_stab=0.00
+  oja  : stable_sync=2/15 (13%)  |  mean_async_stab=0.13  |  approx_stable_async=2  |  mean_E=-432.24
+      pat[0]: E=-358.9  async_stab=0.00
+      pat[1]: E=-472.4  async_stab=0.00
+      pat[2]: E=-326.6  async_stab=1.00
+      pat[3]: E=-560.5  async_stab=0.00
+      pat[4]: E=-415.3  async_stab=0.00
+      pat[5]: E=-467.7  async_stab=0.00
+      pat[6]: E=-568.9  async_stab=0.00
+      pat[7]: E=-423.7  async_stab=0.00
+      pat[8]: E=-450.3  async_stab=0.00
+      pat[9]: E=-339.4  async_stab=1.00
+      pat[10]: E=-359.7  async_stab=0.00
+      pat[11]: E=-412.4  async_stab=0.00
+      pat[12]: E=-547.3  async_stab=0.00
+      pat[13]: E=-364.9  async_stab=0.00
+      pat[14]: E=-415.7  async_stab=0.00
+
+--- large-25x50  |  n=1250  |  #wzorców=6  |  shape=(50, 25) ---
+  hebb : stable_sync=0/6 (0%)  |  mean_async_stab=0.00  |  approx_stable_async=0  |  mean_E=-1646.49
+      pat[0]: E=-1506.2  async_stab=0.00
+      pat[1]: E=-1747.3  async_stab=0.00
+      pat[2]: E=-1387.9  async_stab=0.00
+      pat[3]: E=-1807.2  async_stab=0.00
+      pat[4]: E=-1704.7  async_stab=0.00
+      pat[5]: E=-1725.7  async_stab=0.00
+  oja  : stable_sync=0/6 (0%)  |  mean_async_stab=0.00  |  approx_stable_async=0  |  mean_E=-1399.72
+      pat[0]: E=-1287.4  async_stab=0.00
+      pat[1]: E=-1480.3  async_stab=0.00
+      pat[2]: E=-1194.3  async_stab=0.00
+      pat[3]: E=-1529.1  async_stab=0.00
+      pat[4]: E=-1445.3  async_stab=0.00
+      pat[5]: E=-1462.0  async_stab=0.00

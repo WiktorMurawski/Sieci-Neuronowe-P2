@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
 
-from data import project_root
+from data import project_root, DATASETS, load_dataset
 
 
 def save_previews(name: str, patterns: np.ndarray, shape: tuple[int, int]) -> Path:
@@ -42,3 +42,10 @@ def save_previews(name: str, patterns: np.ndarray, shape: tuple[int, int]) -> Pa
     fig.savefig(dest / "_grid.png", dpi=130, bbox_inches="tight")
     plt.close(fig)
     return dest
+
+if __name__ == "__main__":
+    print("\n=== Generowanie podglądów wzorców ===")
+    for name in DATASETS:
+        patterns, shape = load_dataset(name)
+        dest = save_previews(name, patterns, shape)
+        print(f"  {name:20s} -> {dest}")

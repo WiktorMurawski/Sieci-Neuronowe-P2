@@ -14,3 +14,5 @@ Zagadnienia do sprawdzenia:
 9. Przeprowadzić eksperyment dla zbioru złożonego z dużych bitmap (co najmniej 200x300), na przykład odpowiednio skonwertowanych zdjęć kotów (duże bitmapy nie są udostępnione w ramach projektu, należy takie znaleźć i wybrać).
 
 Raport, poza informacjami o tym, jak działają reguły uczenia, powinien zawierać też wyjaśnienie, dlaczego te metody uczenia działają.
+
+Planując eksperymenty i opisując wyniki należy pamiętać, że proces nauki sieci mogą nie być w 100% powtarzalny. Często rozpoczynamy uczenie od losowej inicjacji wag. W zależności od wyniku tego losowania końcowy efekt może się różnić. Oczywiście, dobrze działająca metoda uczenia powinna dawać zbliżone rezultaty, niezależnie od wag początkowych (tak długo, jak początkowe wagi są wybierane z rozsądnego rozkładu). Należy zaadresować ten problem, na przykład przez przeprowadzenie uczenia dla wielu różnych układów startowych i sprawdzenie powtarzalności wyników.
