@@ -15,15 +15,17 @@ from pathlib import Path
 import numpy as np
 import csv
 
-ROOT = Path(__file__).resolve().parent
-ATTACH = Path("/home/workdir/attachments")
+ROOT = Path(__file__).resolve().parent.parent
+ATTACH = Path("patterns")
 sys.path.insert(0, str(ATTACH))
 
 from data import DATASETS, load_dataset
 from hopfield import HopfieldNetwork
 
-OUT_CSV = ROOT / "results_recovery.csv"
-OUT_TXT = ROOT / "results_recovery.txt"
+OUT_DIR = ROOT / "results"
+
+OUT_CSV = OUT_DIR / "results_recovery.csv"
+OUT_TXT = OUT_DIR / "results_recovery.txt"
 
 NOISE_LEVELS = [0.0, 0.05, 0.10, 0.15, 0.20, 0.30, 0.40]
 N_SEEDS = 5
@@ -37,9 +39,11 @@ def hamming(a: np.ndarray, b: np.ndarray) -> int:
 
 
 def main():
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+
     rows = []
     lines = []
-    lines.append("=== Skuteczność odzyskiwania z uszkodzonego wejścia ===\n")
+    lines.append("=== Skutecznosc odzyskiwania z uszkodzonego wejscia ===\n")
     lines.append(f"mode={UPDATE_MODE}, max_steps={MAX_STEPS}, n_seeds={N_SEEDS}\n")
 
     for name in DATASETS:

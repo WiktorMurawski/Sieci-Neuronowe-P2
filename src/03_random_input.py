@@ -15,15 +15,17 @@ from pathlib import Path
 import numpy as np
 import csv
 
-ROOT = Path(__file__).resolve().parent
-ATTACH = Path("/home/workdir/attachments")
+ROOT = Path(__file__).resolve().parent.parent
+ATTACH = Path("patterns")
 sys.path.insert(0, str(ATTACH))
 
 from data import DATASETS, load_dataset
 from hopfield import HopfieldNetwork
 
-OUT_CSV = ROOT / "results_random.csv"
-OUT_TXT = ROOT / "results_random.txt"
+OUT_DIR = ROOT / "results"
+
+OUT_CSV = OUT_DIR / "results_random.csv"
+OUT_TXT = OUT_DIR / "results_random.txt"
 
 N_RANDOM = 10          # ile losowych wejść na zbiór/regułę
 BASE_SEED = 999
@@ -44,9 +46,11 @@ def closest_pattern(state: np.ndarray, patterns: np.ndarray) -> tuple[int, float
 
 
 def main():
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+
     rows = []
     lines = []
-    lines.append("=== Reakcja na całkowicie losowe wejście ===\n")
+    lines.append("=== Reakcja na calkowicie losowe wejscie ===\n")
     lines.append(f"n_random={N_RANDOM}, mode={UPDATE_MODE}, max_steps={MAX_STEPS}\n")
 
     for name in DATASETS:
@@ -89,7 +93,7 @@ def main():
                         osc = True
                         tag += " [OSC?]"
 
-                lines.append(f"    rnd[{r}]: E={e:8.1f}  steps≈{len(hist)-1}  {tag}")
+                lines.append(f"    rnd[{r}]: E={e:8.1f}  steps={len(hist)-1}  {tag}")
 
             mean_e = float(np.mean(energies))
             frac_stored = recovered_to_stored / N_RANDOM

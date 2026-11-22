@@ -1,0 +1,17 @@
+dataset,rule,n_neurons,n_patterns,n_random,frac_to_stored,n_spurious,mean_energy_final
+small-7x7,hebb,49,5,10,0.3,7,-38.06
+small-7x7,oja,49,5,10,0.2,8,-26.81
+letters-abc-8x12,hebb,96,3,10,0.6,4,-115.96
+letters-abc-8x12,oja,96,3,10,0.6,4,-75.77
+animals-14x9,hebb,126,6,10,0.0,10,-98.98
+animals-14x9,oja,126,6,10,0.0,10,-79.27
+letters-14x20,hebb,280,26,10,0.5,5,-2401.21
+letters-14x20,oja,280,26,10,0.5,5,-192.33
+OCRA-12x30,hebb,360,7,10,0.0,10,-352.38
+OCRA-12x30,oja,360,7,10,0.0,10,-284.93
+large-25x25,hebb,625,6,10,0.3,7,-412.21
+large-25x25,oja,625,6,10,0.3,7,-400.87
+large-25x25.plus,hebb,625,15,10,0.0,10,-965.44
+large-25x25.plus,oja,625,15,10,0.1,9,-691.38
+large-25x50,hebb,1250,6,10,0.0,10,-1969.24
+large-25x50,oja,1250,6,10,0.0,10,-1655.37

@@ -41,6 +41,8 @@ def check_async_stable(net: HopfieldNetwork, pattern: np.ndarray, trials: int = 
 
 
 def main():
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    
     rows = []
     lines = []
     lines.append("=== Stabilnosc wzorcow uczacych (Hebb vs Oja) ===")
@@ -92,8 +94,6 @@ def main():
             # szczegóły per wzorzec
             for i, (e, a) in enumerate(zip(energies, async_scores)):
                 lines.append(f"      pat[{i}]: E={e:.1f}  async_stab={a:.2f}")
-
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
 
     # zapis CSV
     with open(OUT_CSV, "w", newline="") as f:

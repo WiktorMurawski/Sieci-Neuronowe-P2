@@ -19,7 +19,7 @@ def save_previews(name: str, patterns: np.ndarray, shape: tuple[int, int]) -> Pa
     n = len(patterns)
     for i, p in enumerate(patterns):
         fig, ax = plt.subplots(figsize=(3, 3))
-        ax.imshow(p.reshape(shape), cmap="gray", vmin=-1, vmax=1)
+        ax.imshow(p.reshape(shape), cmap="gray_r", vmin=-1, vmax=1)
         ax.set_title(f"{name} #{i}")
         ax.axis("off")
         fig.savefig(dest / f"pattern_{i:02d}.png", dpi=120, bbox_inches="tight")
@@ -32,7 +32,7 @@ def save_previews(name: str, patterns: np.ndarray, shape: tuple[int, int]) -> Pa
         axes = np.array([axes])
     axes = np.array(axes).flatten()
     for i, p in enumerate(patterns):
-        axes[i].imshow(p.reshape(shape), cmap="gray", vmin=-1, vmax=1)
+        axes[i].imshow(p.reshape(shape), cmap="gray_r", vmin=-1, vmax=1)
         axes[i].set_title(f"#{i}", fontsize=9)
         axes[i].axis("off")
     for i in range(n, len(axes)):

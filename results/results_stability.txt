@@ -1,6 +1,5 @@
 === Stabilnosc wzorcow uczacych (Hebb vs Oja) ===
 
-
 --- small-7x7  |  n=49  |  #wzorców=5  |  shape=(7, 7) ---
   hebb : stable_sync=3/5 (60%)  |  mean_async_stab=0.60  |  approx_stable_async=3  |  mean_E=-32.95
       pat[0]: E=-29.2  async_stab=1.00
@@ -180,3 +179,17 @@
       pat[3]: E=-1529.1  async_stab=0.00
       pat[4]: E=-1445.3  async_stab=0.00
       pat[5]: E=-1462.0  async_stab=0.00
+
+--- stable-5x5  |  n=25  |  #wzorców=5  |  shape=(5, 5) ---
+  hebb : stable_sync=5/5 (100%)  |  mean_async_stab=1.00  |  approx_stable_async=5  |  mean_E=-14.18
+      pat[0]: E=-13.6  async_stab=1.00
+      pat[1]: E=-13.0  async_stab=1.00
+      pat[2]: E=-18.1  async_stab=1.00
+      pat[3]: E=-13.1  async_stab=1.00
+      pat[4]: E=-13.1  async_stab=1.00
+  oja  : stable_sync=5/5 (100%)  |  mean_async_stab=1.00  |  approx_stable_async=5  |  mean_E=-12.42
+      pat[0]: E=-13.1  async_stab=1.00
+      pat[1]: E=-11.5  async_stab=1.00
+      pat[2]: E=-14.1  async_stab=1.00
+      pat[3]: E=-11.7  async_stab=1.00
+      pat[4]: E=-11.7  async_stab=1.00

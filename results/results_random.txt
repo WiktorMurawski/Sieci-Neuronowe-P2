@@ -1,0 +1,212 @@
+=== Reakcja na calkowicie losowe wejscie ===
+
+n_random=10, mode=async, max_steps=100
+
+
+--- small-7x7  n=49  #pat=5 ---
+  [hebb]
+    rnd[0]: E=   -40.0  steps=25  -> spurious (closest pat[4] d=0.245)
+    rnd[1]: E=   -34.0  steps=21  -> spurious (closest pat[1] d=0.204)
+    rnd[2]: E=   -32.0  steps=22  -> spurious (closest pat[3] d=0.265)
+    rnd[3]: E=   -40.0  steps=27  -> spurious (closest pat[4] d=0.245)
+    rnd[4]: E=   -40.0  steps=24  -> pattern[2] (d=0.000)
+    rnd[5]: E=   -40.0  steps=26  -> pattern[2] (d=0.000)
+    rnd[6]: E=   -40.0  steps=27  -> spurious (closest pat[4] d=0.245)
+    rnd[7]: E=   -40.0  steps=22  -> spurious (closest pat[4] d=0.245)
+    rnd[8]: E=   -40.0  steps=24  -> pattern[2] (d=0.000)
+    rnd[9]: E=   -34.5  steps=19  -> spurious (closest pat[1] d=0.122)
+    >>> frac_to_stored=0.30  spurious=7/10  mean_E=-38.1
+  [oja]
+    rnd[0]: E=   -25.7  steps=17  -> spurious (closest pat[1] d=0.408)
+    rnd[1]: E=   -26.0  steps=21  -> spurious (closest pat[1] d=0.163)
+    rnd[2]: E=   -28.5  steps=31  -> spurious (closest pat[4] d=0.245)
+    rnd[3]: E=   -25.2  steps=19  -> pattern[4] (d=0.000)
+    rnd[4]: E=   -26.0  steps=22  -> spurious (closest pat[3] d=0.102)
+    rnd[5]: E=   -28.5  steps=32  -> pattern[2] (d=0.000)
+    rnd[6]: E=   -28.5  steps=29  -> spurious (closest pat[4] d=0.245)
+    rnd[7]: E=   -28.5  steps=20  -> spurious (closest pat[4] d=0.245)
+    rnd[8]: E=   -25.2  steps=24  -> spurious (closest pat[2] d=0.245)
+    rnd[9]: E=   -26.0  steps=21  -> spurious (closest pat[1] d=0.163)
+    >>> frac_to_stored=0.20  spurious=8/10  mean_E=-26.8
+
+--- letters-abc-8x12  n=96  #pat=3 ---
+  [hebb]
+    rnd[0]: E=  -116.0  steps=36  -> pattern[1] (d=0.031)
+    rnd[1]: E=  -116.0  steps=40  -> pattern[1] (d=0.031)
+    rnd[2]: E=  -116.0  steps=45  -> spurious (closest pat[2] d=0.938)
+    rnd[3]: E=  -116.0  steps=35  -> pattern[1] (d=0.031)
+    rnd[4]: E=  -116.0  steps=42  -> spurious (closest pat[2] d=0.938)
+    rnd[5]: E=  -116.0  steps=43  -> spurious (closest pat[2] d=0.938)
+    rnd[6]: E=  -116.0  steps=37  -> pattern[1] (d=0.031)
+    rnd[7]: E=  -116.0  steps=48  -> pattern[1] (d=0.031)
+    rnd[8]: E=  -116.0  steps=44  -> pattern[1] (d=0.031)
+    rnd[9]: E=  -116.0  steps=44  -> spurious (closest pat[2] d=0.938)
+    >>> frac_to_stored=0.60  spurious=4/10  mean_E=-116.0
+  [oja]
+    rnd[0]: E=   -75.8  steps=36  -> pattern[1] (d=0.031)
+    rnd[1]: E=   -75.8  steps=40  -> pattern[1] (d=0.031)
+    rnd[2]: E=   -75.8  steps=45  -> spurious (closest pat[2] d=0.938)
+    rnd[3]: E=   -75.8  steps=35  -> pattern[1] (d=0.031)
+    rnd[4]: E=   -75.8  steps=42  -> spurious (closest pat[2] d=0.938)
+    rnd[5]: E=   -75.8  steps=43  -> spurious (closest pat[2] d=0.938)
+    rnd[6]: E=   -75.8  steps=37  -> pattern[1] (d=0.031)
+    rnd[7]: E=   -75.8  steps=48  -> pattern[1] (d=0.031)
+    rnd[8]: E=   -75.8  steps=44  -> pattern[1] (d=0.031)
+    rnd[9]: E=   -75.8  steps=44  -> spurious (closest pat[2] d=0.938)
+    >>> frac_to_stored=0.60  spurious=4/10  mean_E=-75.8
+
+--- animals-14x9  n=126  #pat=6 ---
+  [hebb]
+    rnd[0]: E=   -99.0  steps=61  -> spurious (closest pat[3] d=0.659)
+    rnd[1]: E=   -99.0  steps=84  -> spurious (closest pat[2] d=0.159)
+    rnd[2]: E=   -99.0  steps=65  -> spurious (closest pat[2] d=0.159)
+    rnd[3]: E=   -99.0  steps=77  -> spurious (closest pat[2] d=0.159)
+    rnd[4]: E=   -99.0  steps=74  -> spurious (closest pat[3] d=0.659)
+    rnd[5]: E=   -99.0  steps=67  -> spurious (closest pat[3] d=0.659)
+    rnd[6]: E=   -99.0  steps=68  -> spurious (closest pat[2] d=0.159)
+    rnd[7]: E=   -99.0  steps=70  -> spurious (closest pat[3] d=0.659)
+    rnd[8]: E=   -99.0  steps=64  -> spurious (closest pat[2] d=0.159)
+    rnd[9]: E=   -99.0  steps=83  -> spurious (closest pat[2] d=0.159)
+    >>> frac_to_stored=0.00  spurious=10/10  mean_E=-99.0
+  [oja]
+    rnd[0]: E=   -80.9  steps=60  -> spurious (closest pat[3] d=0.651)
+    rnd[1]: E=   -80.9  steps=84  -> spurious (closest pat[2] d=0.159)
+    rnd[2]: E=   -80.9  steps=65  -> spurious (closest pat[2] d=0.159)
+    rnd[3]: E=   -80.9  steps=77  -> spurious (closest pat[2] d=0.159)
+    rnd[4]: E=   -64.3  steps=61  -> spurious (closest pat[0] d=0.556)
+    rnd[5]: E=   -80.9  steps=76  -> spurious (closest pat[3] d=0.651)
+    rnd[6]: E=   -80.9  steps=68  -> spurious (closest pat[2] d=0.159)
+    rnd[7]: E=   -80.9  steps=71  -> spurious (closest pat[3] d=0.651)
+    rnd[8]: E=   -80.9  steps=66  -> spurious (closest pat[2] d=0.159)
+    rnd[9]: E=   -80.9  steps=85  -> spurious (closest pat[2] d=0.159)
+    >>> frac_to_stored=0.00  spurious=10/10  mean_E=-79.3
+
+--- letters-14x20  n=280  #pat=26 ---
+  [hebb]
+    rnd[0]: E= -2401.2  steps=147  -> pattern[17] (d=0.036)
+    rnd[1]: E= -2401.2  steps=138  -> spurious (closest pat[22] d=0.814)
+    rnd[2]: E= -2401.2  steps=135  -> pattern[17] (d=0.036)
+    rnd[3]: E= -2401.2  steps=135  -> pattern[17] (d=0.036)
+    rnd[4]: E= -2401.2  steps=144  -> spurious (closest pat[22] d=0.814)
+    rnd[5]: E= -2401.2  steps=128  -> spurious (closest pat[22] d=0.814)
+    rnd[6]: E= -2401.2  steps=138  -> spurious (closest pat[22] d=0.814)
+    rnd[7]: E= -2401.2  steps=141  -> pattern[17] (d=0.036)
+    rnd[8]: E= -2401.2  steps=133  -> pattern[17] (d=0.036)
+    rnd[9]: E= -2401.2  steps=149  -> spurious (closest pat[22] d=0.814)
+    >>> frac_to_stored=0.50  spurious=5/10  mean_E=-2401.2
+  [oja]
+    rnd[0]: E=  -192.7  steps=143  -> pattern[14] (d=0.025)
+    rnd[1]: E=  -192.7  steps=154  -> spurious (closest pat[24] d=0.800)
+    rnd[2]: E=  -191.6  steps=124  -> pattern[11] (d=0.000)
+    rnd[3]: E=  -191.6  steps=126  -> pattern[11] (d=0.000)
+    rnd[4]: E=  -192.7  steps=192  -> spurious (closest pat[24] d=0.800)
+    rnd[5]: E=  -192.7  steps=134  -> spurious (closest pat[24] d=0.800)
+    rnd[6]: E=  -192.7  steps=146  -> spurious (closest pat[24] d=0.800)
+    rnd[7]: E=  -192.7  steps=147  -> pattern[14] (d=0.025)
+    rnd[8]: E=  -191.6  steps=134  -> pattern[11] (d=0.000)
+    rnd[9]: E=  -192.7  steps=145  -> spurious (closest pat[24] d=0.800)
+    >>> frac_to_stored=0.50  spurious=5/10  mean_E=-192.3
+
+--- OCRA-12x30  n=360  #pat=7 ---
+  [hebb]
+    rnd[0]: E=  -352.1  steps=255  -> spurious (closest pat[0] d=0.508)
+    rnd[1]: E=  -352.1  steps=278  -> spurious (closest pat[2] d=0.153)
+    rnd[2]: E=  -349.3  steps=185  -> spurious (closest pat[0] d=0.539)
+    rnd[3]: E=  -353.6  steps=240  -> spurious (closest pat[1] d=0.119)
+    rnd[4]: E=  -352.1  steps=190  -> spurious (closest pat[2] d=0.153)
+    rnd[5]: E=  -352.1  steps=186  -> spurious (closest pat[0] d=0.508)
+    rnd[6]: E=  -353.6  steps=209  -> spurious (closest pat[0] d=0.472)
+    rnd[7]: E=  -352.1  steps=247  -> spurious (closest pat[0] d=0.508)
+    rnd[8]: E=  -353.3  steps=201  -> spurious (closest pat[0] d=0.483)
+    rnd[9]: E=  -353.6  steps=180  -> spurious (closest pat[0] d=0.472)
+    >>> frac_to_stored=0.00  spurious=10/10  mean_E=-352.4
+  [oja]
+    rnd[0]: E=  -298.1  steps=273  -> spurious (closest pat[0] d=0.508)
+    rnd[1]: E=  -250.1  steps=213  -> spurious (closest pat[3] d=0.086)
+    rnd[2]: E=  -298.1  steps=198  -> spurious (closest pat[0] d=0.508)
+    rnd[3]: E=  -300.6  steps=256  -> spurious (closest pat[1] d=0.125)
+    rnd[4]: E=  -298.1  steps=196  -> spurious (closest pat[2] d=0.153)
+    rnd[5]: E=  -298.1  steps=184  -> spurious (closest pat[0] d=0.508)
+    rnd[6]: E=  -300.6  steps=213  -> spurious (closest pat[0] d=0.467)
+    rnd[7]: E=  -204.8  steps=158  -> spurious (closest pat[1] d=0.531)
+    rnd[8]: E=  -300.0  steps=228  -> spurious (closest pat[0] d=0.481)
+    rnd[9]: E=  -300.6  steps=182  -> spurious (closest pat[0] d=0.467)
+    >>> frac_to_stored=0.00  spurious=10/10  mean_E=-284.9
+
+--- large-25x25  n=625  #pat=6 ---
+  [hebb]
+    rnd[0]: E=  -322.3  steps=306  -> spurious (closest pat[2] d=0.494)
+    rnd[1]: E=  -459.3  steps=304  -> pattern[3] (d=0.048)
+    rnd[2]: E=  -459.3  steps=299  -> spurious (closest pat[2] d=0.478)
+    rnd[3]: E=  -452.2  steps=453  -> spurious (closest pat[3] d=0.115)
+    rnd[4]: E=  -455.7  steps=322  -> spurious (closest pat[2] d=0.485)
+    rnd[5]: E=  -459.3  steps=278  -> spurious (closest pat[2] d=0.478)
+    rnd[6]: E=  -436.8  steps=315  -> spurious (closest pat[5] d=0.162)
+    rnd[7]: E=  -322.3  steps=299  -> pattern[0] (d=0.000)
+    rnd[8]: E=  -432.5  steps=337  -> spurious (closest pat[2] d=0.498)
+    rnd[9]: E=  -322.3  steps=288  -> pattern[0] (d=0.000)
+    >>> frac_to_stored=0.30  spurious=7/10  mean_E=-412.2
+  [oja]
+    rnd[0]: E=  -321.2  steps=306  -> spurious (closest pat[2] d=0.494)
+    rnd[1]: E=  -443.4  steps=302  -> pattern[3] (d=0.048)
+    rnd[2]: E=  -443.4  steps=299  -> spurious (closest pat[2] d=0.478)
+    rnd[3]: E=  -436.0  steps=453  -> spurious (closest pat[3] d=0.115)
+    rnd[4]: E=  -439.5  steps=324  -> spurious (closest pat[2] d=0.485)
+    rnd[5]: E=  -443.4  steps=278  -> spurious (closest pat[2] d=0.478)
+    rnd[6]: E=  -421.8  steps=317  -> spurious (closest pat[5] d=0.162)
+    rnd[7]: E=  -321.2  steps=299  -> pattern[0] (d=0.000)
+    rnd[8]: E=  -417.5  steps=343  -> spurious (closest pat[2] d=0.498)
+    rnd[9]: E=  -321.2  steps=288  -> pattern[0] (d=0.000)
+    >>> frac_to_stored=0.30  spurious=7/10  mean_E=-400.9
+
+--- large-25x25.plus  n=625  #pat=15 ---
+  [hebb]
+    rnd[0]: E=  -965.4  steps=320  -> spurious (closest pat[6] d=0.144)
+    rnd[1]: E=  -965.4  steps=284  -> spurious (closest pat[6] d=0.144)
+    rnd[2]: E=  -965.4  steps=305  -> spurious (closest pat[2] d=0.496)
+    rnd[3]: E=  -965.4  steps=330  -> spurious (closest pat[6] d=0.144)
+    rnd[4]: E=  -965.4  steps=314  -> spurious (closest pat[6] d=0.144)
+    rnd[5]: E=  -965.4  steps=439  -> spurious (closest pat[2] d=0.496)
+    rnd[6]: E=  -965.4  steps=344  -> spurious (closest pat[6] d=0.144)
+    rnd[7]: E=  -965.4  steps=304  -> spurious (closest pat[2] d=0.496)
+    rnd[8]: E=  -965.4  steps=332  -> spurious (closest pat[2] d=0.496)
+    rnd[9]: E=  -965.4  steps=329  -> spurious (closest pat[6] d=0.144)
+    >>> frac_to_stored=0.00  spurious=10/10  mean_E=-965.4
+  [oja]
+    rnd[0]: E=  -731.9  steps=361  -> spurious (closest pat[6] d=0.142)
+    rnd[1]: E=  -731.9  steps=289  -> spurious (closest pat[6] d=0.142)
+    rnd[2]: E=  -731.9  steps=310  -> spurious (closest pat[2] d=0.498)
+    rnd[3]: E=  -731.9  steps=339  -> spurious (closest pat[6] d=0.142)
+    rnd[4]: E=  -731.9  steps=327  -> spurious (closest pat[6] d=0.142)
+    rnd[5]: E=  -326.6  steps=379  -> pattern[2] (d=0.000)
+    rnd[6]: E=  -731.9  steps=443  -> spurious (closest pat[6] d=0.142)
+    rnd[7]: E=  -731.9  steps=315  -> spurious (closest pat[2] d=0.498)
+    rnd[8]: E=  -731.9  steps=373  -> spurious (closest pat[2] d=0.498)
+    rnd[9]: E=  -731.9  steps=350  -> spurious (closest pat[6] d=0.142)
+    >>> frac_to_stored=0.10  spurious=9/10  mean_E=-691.4
+
+--- large-25x50  n=1250  #pat=6 ---
+  [hebb]
+    rnd[0]: E= -1969.5  steps=664  -> spurious (closest pat[2] d=0.749)
+    rnd[1]: E= -1969.5  steps=602  -> spurious (closest pat[3] d=0.090)
+    rnd[2]: E= -1969.5  steps=657  -> spurious (closest pat[3] d=0.090)
+    rnd[3]: E= -1968.7  steps=610  -> spurious (closest pat[2] d=0.777)
+    rnd[4]: E= -1969.5  steps=604  -> spurious (closest pat[3] d=0.090)
+    rnd[5]: E= -1969.2  steps=618  -> spurious (closest pat[3] d=0.070)
+    rnd[6]: E= -1968.7  steps=626  -> spurious (closest pat[2] d=0.777)
+    rnd[7]: E= -1969.2  steps=609  -> spurious (closest pat[3] d=0.070)
+    rnd[8]: E= -1969.2  steps=618  -> spurious (closest pat[3] d=0.070)
+    rnd[9]: E= -1969.2  steps=632  -> spurious (closest pat[3] d=0.070)
+    >>> frac_to_stored=0.00  spurious=10/10  mean_E=-1969.2
+  [oja]
+    rnd[0]: E= -1651.4  steps=633  -> spurious (closest pat[2] d=0.777)
+    rnd[1]: E= -1656.6  steps=602  -> spurious (closest pat[3] d=0.090)
+    rnd[2]: E= -1651.5  steps=624  -> spurious (closest pat[3] d=0.092)
+    rnd[3]: E= -1655.9  steps=610  -> spurious (closest pat[2] d=0.777)
+    rnd[4]: E= -1656.6  steps=608  -> spurious (closest pat[3] d=0.090)
+    rnd[5]: E= -1656.4  steps=620  -> spurious (closest pat[3] d=0.070)
+    rnd[6]: E= -1655.9  steps=626  -> spurious (closest pat[2] d=0.777)
+    rnd[7]: E= -1656.4  steps=609  -> spurious (closest pat[3] d=0.070)
+    rnd[8]: E= -1656.4  steps=620  -> spurious (closest pat[3] d=0.070)
+    rnd[9]: E= -1656.4  steps=632  -> spurious (closest pat[3] d=0.070)
+    >>> frac_to_stored=0.00  spurious=10/10  mean_E=-1655.4
