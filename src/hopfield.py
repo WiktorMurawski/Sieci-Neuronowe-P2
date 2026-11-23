@@ -37,17 +37,15 @@ class HopfieldNetwork:
             lr = 0.1 / (self.n ** 2)
 
         self._hebb(patterns)
-        W = self.W
 
         for _ in range(epochs):
             for p in patterns:
-                y = W @ p
-                dW = lr * (np.outer(y, p) - np.outer(y, y) @ W)
-                W += dW
-                W = 0.5 * (W + W.T)
-                np.fill_diagonal(W, 0.0)
+                y = self.W @ p
+                dW = lr * (np.outer(y, p) - np.outer(y, y) @ self.W)
+                self.W += dW
+                self.W = 0.5 * (self.W + self.W.T)
+                np.fill_diagonal(self.W, 0.0)
 
-        self.W = W
 
     def old_oja(self, patterns: np.ndarray, eta: float = 0.001, epochs: int = 40):
         """

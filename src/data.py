@@ -21,7 +21,9 @@ DATASETS = {
     "large-25x25":      {"file": "large-25x25.csv",      "shape": (25, 25)},
     "large-25x25.plus": {"file": "large-25x25.plus.csv", "shape": (25, 25)},
     "large-25x50":      {"file": "large-25x50.csv",      "shape": (50, 25)},
+    # własne zbiory 
     "stable-5x5":       {"file": "stable-5x5.csv",       "shape": (5, 5)},
+    "cats-200x300":     {"file": "cats-200x300.csv",     "shape": (300, 200)},
 }
 
 
