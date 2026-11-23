@@ -11,11 +11,12 @@ from typing import List, Tuple, Optional, Literal, Sequence
 from matplotlib.widgets import Slider, Button
 import matplotlib.pyplot as plt
 
+OJA_THRESHOLD = 8000 # Powyżej tej liczby neuronów Oja nie jest liczona ze względu na pamięć
 
 class HopfieldNetwork:
     def __init__(self, n_neurons: int):
         self.n = n_neurons
-        self.W = np.zeros((n_neurons, n_neurons))
+        self.W = np.zeros((n_neurons, n_neurons), dtype=np.float32)
         self.patterns: Optional[np.ndarray] = None
         self.learning_rule: Optional[str] = None
         self.shape: Optional[Tuple[int, int]] = None
@@ -25,8 +26,8 @@ class HopfieldNetwork:
     # ------------------------------------------------------------------
     def _hebb(self, patterns: np.ndarray):
         """Klasyczna reguła Hebba (outer product + zero diagonal)."""
-        self.W = patterns.T @ patterns / self.n
-        np.fill_diagonal(self.W, 0.0)
+        self.W = (patterns.T @ patterns) / np.float32(self.n)
+        np.fill_diagonal(self.W, np.float32(0.0))
 
     def _oja(self, patterns: np.ndarray, lr: float = None, epochs: int = 50):
         """
@@ -35,33 +36,21 @@ class HopfieldNetwork:
         """
         if lr is None:
             lr = 0.1 / (self.n ** 2)
+        lr_32 = np.float32(lr)
+        half_32 = np.float32(0.5)
 
         self._hebb(patterns)
+
+        if self.n > OJA_THRESHOLD:
+            return
 
         for _ in range(epochs):
             for p in patterns:
                 y = self.W @ p
-                dW = lr * (np.outer(y, p) - np.outer(y, y) @ self.W)
+                dW = lr_32 * (np.outer(y, p) - np.outer(y, y) @ self.W)
                 self.W += dW
-                self.W = 0.5 * (self.W + self.W.T)
-                np.fill_diagonal(self.W, 0.0)
-
-
-    def old_oja(self, patterns: np.ndarray, eta: float = 0.001, epochs: int = 40):
-        """
-        Stabilna wersja reguły Oji.
-        Start od Hebba, potem delikatna korekta z clippingiem.
-        """
-        self._hebb(patterns)
-        for _ in range(epochs):
-            for p in patterns:
-                y = self.W @ p
-                y = np.clip(y, -30.0, 30.0)
-                delta = eta * (np.outer(y, p) - np.outer(y, y) @ self.W)
-                self.W += delta
-                self.W = 0.5 * (self.W + self.W.T)
-                np.fill_diagonal(self.W, 0.0)
-                self.W = np.clip(self.W, -3.0, 3.0)
+                self.W = half_32 * (self.W + self.W.T)
+                np.fill_diagonal(self.W, np.float32(0.0))
 
     def train(
         self,
@@ -71,12 +60,12 @@ class HopfieldNetwork:
     ):
         flat = []
         for p in patterns:
-            p = np.asarray(p, dtype=float).flatten()
+            p = np.asarray(p, dtype=np.float32).flatten()
             if p.size != self.n:
                 raise ValueError(f"Wzorzec ma długość {p.size}, sieć ma {self.n}")
-            p = np.where(p > 0, 1.0, -1.0)
+            p = np.where(p > 0, np.float32(1.0), np.float32(-1.0))
             flat.append(p)
-        patterns_arr = np.array(flat)
+        patterns_arr = np.asarray(flat, dtype=np.float32)
         self.patterns = patterns_arr
         self.learning_rule = rule
         self.shape = shape
@@ -100,7 +89,7 @@ class HopfieldNetwork:
         max_steps: int = 100,
         track: bool = False,
     ) -> Tuple[np.ndarray, List[np.ndarray]]:
-        s = np.where(np.asarray(state).flatten() > 0, 1.0, -1.0).copy()
+        s = np.where(np.asarray(state).flatten() > 0, np.float32(1.0), np.float32(-1.0)).copy()
         history = [s.copy()] if track else []
 
         if mode == "sync":

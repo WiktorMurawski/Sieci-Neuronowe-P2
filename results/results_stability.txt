@@ -47,7 +47,7 @@
       pat[2]: E=-2243.5  async_stab=0.00
       pat[3]: E=-2044.3  async_stab=0.00
       pat[4]: E=-2193.1  async_stab=0.00
-      pat[5]: E=-2159.5  async_stab=0.00
+      pat[5]: E=-2159.6  async_stab=0.00
       pat[6]: E=-1787.1  async_stab=0.00
       pat[7]: E=-2203.3  async_stab=0.00
       pat[8]: E=-2268.6  async_stab=0.00
@@ -193,3 +193,17 @@
       pat[2]: E=-14.1  async_stab=1.00
       pat[3]: E=-11.7  async_stab=1.00
       pat[4]: E=-11.7  async_stab=1.00
+
+--- cats-200x300  |  n=60000  |  #wzorców=5  |  shape=(300, 200) ---
+  hebb : stable_sync=5/5 (100%)  |  mean_async_stab=1.00  |  approx_stable_async=5  |  mean_E=-33032.68
+      pat[0]: E=-31718.1  async_stab=1.00
+      pat[1]: E=-33768.0  async_stab=1.00
+      pat[2]: E=-32749.8  async_stab=1.00
+      pat[3]: E=-36556.3  async_stab=1.00
+      pat[4]: E=-30371.3  async_stab=1.00
+  oja  : stable_sync=5/5 (100%)  |  mean_async_stab=1.00  |  approx_stable_async=5  |  mean_E=-33032.68
+      pat[0]: E=-31718.1  async_stab=1.00
+      pat[1]: E=-33768.0  async_stab=1.00
+      pat[2]: E=-32749.8  async_stab=1.00
+      pat[3]: E=-36556.3  async_stab=1.00
+      pat[4]: E=-30371.3  async_stab=1.00
