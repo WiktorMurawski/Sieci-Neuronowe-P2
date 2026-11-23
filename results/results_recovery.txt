@@ -6,12 +6,12 @@ mode=async, max_steps=80, n_seeds=5
 --- small-7x7  n=49  #pat=5 ---
   [hebb]
     noise=0.00: success= 60.0% ± 49.0%  (mean final Hamming frac=0.061)
-    noise=0.05: success= 40.0% ± 49.0%  (mean final Hamming frac=0.087)
-    noise=0.10: success= 52.0% ± 50.0%  (mean final Hamming frac=0.071)
-    noise=0.15: success= 48.0% ± 50.0%  (mean final Hamming frac=0.078)
-    noise=0.20: success= 32.0% ± 46.6%  (mean final Hamming frac=0.109)
+    noise=0.05: success= 44.0% ± 49.6%  (mean final Hamming frac=0.086)
+    noise=0.10: success= 52.0% ± 50.0%  (mean final Hamming frac=0.074)
+    noise=0.15: success= 48.0% ± 50.0%  (mean final Hamming frac=0.079)
+    noise=0.20: success= 32.0% ± 46.6%  (mean final Hamming frac=0.113)
     noise=0.30: success= 28.0% ± 44.9%  (mean final Hamming frac=0.150)
-    noise=0.40: success= 24.0% ± 42.7%  (mean final Hamming frac=0.209)
+    noise=0.40: success= 24.0% ± 42.7%  (mean final Hamming frac=0.199)
   [oja]
     noise=0.00: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
     noise=0.05: success= 84.0% ± 36.7%  (mean final Hamming frac=0.009)
@@ -43,8 +43,8 @@ mode=async, max_steps=80, n_seeds=5
   [hebb]
     noise=0.00: success= 33.3% ± 47.1%  (mean final Hamming frac=0.136)
     noise=0.05: success= 33.3% ± 47.1%  (mean final Hamming frac=0.136)
-    noise=0.10: success= 23.3% ± 42.3%  (mean final Hamming frac=0.171)
-    noise=0.15: success= 30.0% ± 45.8%  (mean final Hamming frac=0.148)
+    noise=0.10: success= 23.3% ± 42.3%  (mean final Hamming frac=0.170)
+    noise=0.15: success= 23.3% ± 42.3%  (mean final Hamming frac=0.170)
     noise=0.20: success= 16.7% ± 37.3%  (mean final Hamming frac=0.193)
     noise=0.30: success= 16.7% ± 37.3%  (mean final Hamming frac=0.193)
     noise=0.40: success= 13.3% ± 34.0%  (mean final Hamming frac=0.204)
@@ -101,7 +101,7 @@ mode=async, max_steps=80, n_seeds=5
     noise=0.15: success= 56.7% ± 49.6%  (mean final Hamming frac=0.047)
     noise=0.20: success= 63.3% ± 48.2%  (mean final Hamming frac=0.035)
     noise=0.30: success= 56.7% ± 49.6%  (mean final Hamming frac=0.049)
-    noise=0.40: success= 40.0% ± 49.0%  (mean final Hamming frac=0.094)
+    noise=0.40: success= 36.7% ± 48.2%  (mean final Hamming frac=0.099)
   [oja]
     noise=0.00: success= 83.3% ± 37.3%  (mean final Hamming frac=0.008)
     noise=0.05: success= 83.3% ± 37.3%  (mean final Hamming frac=0.008)
@@ -119,7 +119,7 @@ mode=async, max_steps=80, n_seeds=5
     noise=0.15: success=  6.7% ± 24.9%  (mean final Hamming frac=0.265)
     noise=0.20: success=  6.7% ± 24.9%  (mean final Hamming frac=0.265)
     noise=0.30: success=  5.3% ± 22.5%  (mean final Hamming frac=0.272)
-    noise=0.40: success=  2.7% ± 16.1%  (mean final Hamming frac=0.285)
+    noise=0.40: success=  2.7% ± 16.1%  (mean final Hamming frac=0.286)
   [oja]
     noise=0.00: success= 13.3% ± 34.0%  (mean final Hamming frac=0.236)
     noise=0.05: success= 13.3% ± 34.0%  (mean final Hamming frac=0.236)
@@ -151,11 +151,11 @@ mode=async, max_steps=80, n_seeds=5
   [hebb]
     noise=0.00: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
     noise=0.05: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
-    noise=0.10: success= 92.0% ± 27.1%  (mean final Hamming frac=0.022)
+    noise=0.10: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
     noise=0.15: success= 84.0% ± 36.7%  (mean final Hamming frac=0.046)
-    noise=0.20: success= 80.0% ± 40.0%  (mean final Hamming frac=0.074)
-    noise=0.30: success= 40.0% ± 49.0%  (mean final Hamming frac=0.202)
-    noise=0.40: success=  8.0% ± 27.1%  (mean final Hamming frac=0.398)
+    noise=0.20: success= 80.0% ± 40.0%  (mean final Hamming frac=0.067)
+    noise=0.30: success= 32.0% ± 46.6%  (mean final Hamming frac=0.222)
+    noise=0.40: success=  4.0% ± 19.6%  (mean final Hamming frac=0.410)
   [oja]
     noise=0.00: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
     noise=0.05: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
@@ -164,3 +164,21 @@ mode=async, max_steps=80, n_seeds=5
     noise=0.20: success= 88.0% ± 32.5%  (mean final Hamming frac=0.042)
     noise=0.30: success= 36.0% ± 48.0%  (mean final Hamming frac=0.203)
     noise=0.40: success=  4.0% ± 19.6%  (mean final Hamming frac=0.394)
+
+--- cats-200x300  n=60000  #pat=5 ---
+  [hebb]
+    noise=0.00: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
+    noise=0.05: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
+    noise=0.10: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
+    noise=0.15: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
+    noise=0.20: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
+    noise=0.30: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
+    noise=0.40: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
+  [oja]
+    noise=0.00: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
+    noise=0.05: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
+    noise=0.10: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
+    noise=0.15: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
+    noise=0.20: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
+    noise=0.30: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
+    noise=0.40: success=100.0% ±  0.0%  (mean final Hamming frac=0.000)
